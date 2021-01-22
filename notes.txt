@@ -1,0 +1,21 @@
+React (Links to an external site.) is an open-source, declarative, component-based JavaScript library for building user interfaces
+React works especially well for maximizing the performance of large applications that can benefit from reusable UI components, \
+Rather than build a starter project from scratch, we’ll use the Create React App (CRA) CLI to bootstrap the application.
+To create a new react app run the following: photo-port is name of app
+npx create-react-app photo-port
+Did you notice that we used npx instead of npm? This package runner tool simplifies the installation and running process of devDependencies. 
+Rather than installing CRA and then running it, npx will try using the local installation. If it's not there, npx will install it for you.
+Now navigate into that newly created directory and run npm start. You should see something like the following image in your browser:
+
+If this feature annoys you, you can turn it off by adding the BROWSER=none option to the npm start script.
+
+ CRA uses webpack to bundle up and run a development server that restarts when files are changed. 
+ Additionally, it uses Babel to transpile ES6 to ES5.
+ You may be familiar with compiling, which is when high-level code like C++ is transformed into a lower-level language, 
+ like machine code. Well, with transpiling, we're doing something similar.we're transforming languages with similar levels of abstraction. 
+ This means that developers can leverage new versions of 
+ JavaScript without losing functionality if the user's browser doesn't support the latest JavaScript.
+
+ The react package defines new React components.
+ The react-dom package serves as the entry point to the DOM to render the JSX by using the virtual DOM.
+ But you should know that React will inject the whole app into whichever element has the root id.
