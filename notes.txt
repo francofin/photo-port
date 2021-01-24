@@ -19,3 +19,16 @@ If this feature annoys you, you can turn it off by adding the BROWSER=none optio
  The react package defines new React components.
  The react-dom package serves as the entry point to the DOM to render the JSX by using the virtual DOM.
  But you should know that React will inject the whole app into whichever element has the root id.
+ Think of App.js as the root component, or the wrapper component that houses all of the other components.
+ Inside the function, it seems that HTML is all that's returned. But actually, it's not HTML; it's a language called JSX that can represent HTML in JavaScript.
+ To do so, we need to call the class attribute className, as follows, because class is already a keyword in JavaScript.
+ Then, in the About section, add an <img /> element with the src attribute of {coverImage}. You can use the {} syntax in JSX to use JavaScript. 
+ We could choose to hardcode all of the categories, but that would lead to less DRY code. 
+ Instead, we'll use the .map() function inside a JSX expression.
+ Whenever we map over anything in JSX, the outermost element must have a key attribute that's set to be something unique.
+ Often the key will be an id.
+ When you map over an array in a JSX expression, you should return only 
+ a single JSX element—like how you can only return a single element from a React component.
+ e'll use the built-in onClick() method. 
+
+ 
