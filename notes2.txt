@@ -39,3 +39,16 @@ we'll test and compare whether the expected and actual outcomes match.
 se the expect function with a matcher to assert something about a value. 
 The index.test.js.snap file is a serialized version of the component's node structure, 
 which includes elements, attributes, and text content. 
+This file, stored in the __snapshots__ folder, will serve as the base model of the component's structure, 
+and will be compared against new snapshots that are created by the asFragment function.
+Note that the describe function is not absolutely necessary for the test to run; 
+it is used to organize tests into sections that are typically labeled with the element being tested.
+We can also test the emoji's accessibility features by querying the element by its aria-label. 
+we can use the getByLabelText method and query by the aria-label value,
+As the preceding statements indicate, we'll verify that the text content is being inserted into the <a> tags (i.e., that the links are visible to users). 
+To make sure that the correct elements are tested, we'll use the getByTestId method.
+
+The reason we'll use a separate data-testid attribute specific for testing purposes instead of 
+using the id attribute is the same as why we don't query an element by its class:
+We can add this data-testid attribute to any element for querying purposes, but—whenever possible—it's best 
+to query elements by their visible characteristics or accessibility attributes in order to mimic the user's experience.
