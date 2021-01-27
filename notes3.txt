@@ -1,0 +1,83 @@
+In order to keep track of which page the user clicked on, we need to introduce some state to our component. 
+changing the value of a variable within a component does not cause the component to re-render.
+React is using the virtual DOM, so changes to variables do not trigger re-renders to a component. 
+One of the ways we can force the component to know about that change is by using React Hooks.
+React Hooks are a fairly recent addition to the React library that allow you to easily manage state within a component.
+
+import React, { useState } from "react"
+
+function SomeComponent() {
+  const [seconds, setSeconds] = useState(0)
+
+  function startStopwatch() {
+    let updatedSeconds = seconds;
+    setInterval(() => {
+      updatedSeconds += 1;
+      console.log(updatedSeconds);
+      setSeconds(updatedSeconds);
+    }, 1000);
+  }
+
+return (
+  <div>
+    {seconds}
+    <button onClick={startStopwatch} >Start</button>
+  </div>
+)
+}
+
+So there's a couple of things going on here. The first is that we import useState as a named import from react. 
+ useState() is a function that will always return an array.
+ The first item is the value of your state, and the second item is a setter
+ which allows you to set the state to something else. 
+ we need to use the setSeconds method, passing the updated state as an argument.
+ 
+Because setSeconds is asynchronous, we create a new variable called updatedSeconds to keep track of the seconds in real time.
+So what exactly are Hooks? 
+
+The first rule is "Only call Hooks from React functions." This should be easy to remember, 
+because you often use Hooks to affect the state of a component in some way and trigger the component to render.
+
+The second rule is "Only call Hooks at the top level". This means that you cannot use them inside for loops, 
+nested functions within your React component, or conditionals. For organizational 
+purposes and to ensure that you're following these rules, you may want to use Hooks towards the top of your React component.
+We'll start by making the active navigation-link color change depending on which category is selected. To do so, we can use the class navActive.
+Okay, so we start by initializing the category state as an array of a few objects. 
+It is completely fine to use useState without a setter, but keep in mind that it offers no advantages over just creating a variable within the component.
+The preceding line of code means that currentCategory.name === category.name will get evaluated, and as long as it is true, 
+then the second bit of the short circuit, navActive, will be returned.
+We still run into a problem here. We want the Gallery component to know about the change in category. 
+This is where the concept of props comes in handy in React.
+function App() {
+  return <Child somename="Lyza" ></Child>
+}
+
+function Child(props) {
+  return <div>{props.somename}</div>
+}
+The code above would render a <div> that contains "Lyza"! 
+That's right—because components are functions, we can pass in any type of argument we want. 
+
+Rather than passing it in through parentheses, though, you need to pass them in as attributes on the component in JSX.
+Then within the Child component, props is nothing more than the name of the parameter, which you could change to be whatever you want.
+Gallery is not a child of Nav, so we can't pass props from Nav to the Gallery.
+Instead, we’re going to “lift” the state up one level. Whenever you think state needs to be used in multiple sibling components, 
+it's normally a good idea to lift the state up until it can be passed as props to any child components that need it.
+
+Nice work! We have cleaned up the Nav component quite a bit by "lifting" the state to the parent component, App.js.
+
+To update the document.title, which will change the tab's text content,
+we'll use the currentCategory value that will reflect the user's category selection.
+
+We must use a Hook to trigger a re-render on a variable value change.
+In this step, we will introduce a new Hook called useEffect.
+he main difference between useEffect and useState is that useEffect is an API that reflects the lifecycle methods of the component, 
+such as when the component mounts, unmounts, or updates. 
+we'd like the component to re-render when the value updates.
+We'll create this function call inside the Nav component, at the top of the function body.
+Assign the DOM node in the function body of the callback function, as shown in the following code:
+Notice in the preceding code block that the first argument is the callback function, 
+and the second argument is an array with a single element, currentCategory
+
+The second argument directs the hook to re-render the component on changes to the value of this state.
+In other words, if currentCategory changes now, the component will re-render so that the change in document.title will be visible to the user.
