@@ -81,3 +81,14 @@ and the second argument is an array with a single element, currentCategory
 
 The second argument directs the hook to re-render the component on changes to the value of this state.
 In other words, if currentCategory changes now, the component will re-render so that the change in document.title will be visible to the user.
+
+For the sake of modularity, let's go ahead and break out the logic for the images themselves into a PhotoList component. 
+This will be a child component of the Gallery component that will now handle the photo rendering logic.
+
+The alt attribute is used for accessibility user-assistance devices, such as screen readers, so the image's name was assigned.
+The key attribute was also assigned the image's name. This attribute value must be a unique string. The absence of this unique key value will cause an error message. 
+For more information about using the key attribute, refer to the React documentation on lists and keys (Links to an external site.).
+
+src was assigned the require expression. Though this isn't a common practice, 
+it certainly has its use cases! We were also able to take advantage of the incremental naming of the images by using i.
+Remember that with unit tests, you want to try to isolate the part that you're testing as much as possible.

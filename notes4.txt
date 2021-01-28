@@ -1,0 +1,82 @@
+Due to keywords reserved in JavaScript, 
+we need to replace the for attribute in the <label> element to htmlFor, just as class had to be changed to className previously.
+
+Because it's been a while, let's review the process of how we submitted forms in HTML. 
+We used event handlers that listened for the click event to retrieve the input values from the DOM, 
+and then we submitted the form data to a database.
+
+Because forms have an internal state, we can leverage the useState Hook to maintain the form data with state.
+When that form data is maintained by the state of the component, we call it a controlled component. 
+When the data is retrieved, then submitted directly from the DOM, we call it an uncontrolled component.
+
+In React, the advantage of a controlled component is that the data can be validated or manipulated using JavaScript, 
+offering better control over the data but also requiring more time to develop.
+Now we'll develop a controlled component to do client-side validation. 
+To sync the form data of the user input with the component's state, we'll apply the useState Hook that we used previously. 
+ In this case, we want to clear the input fields on the component loading.
+ Now let's add the defaultValue attribute to each of the three form elements that'll handle form data.
+ With this attribute, we can assign the initial state values to the input fields in the DOM, as shown in the following code:
+ In the next step, we'll create a function that will sync the state of the component formState with the user inputs.
+ First, add the attribute onChange to the <input> element for name, and assign a function to this attribute, aptly called handleChange.
+ This function will sync the internal state of the component formState with the user input from the DOM. 
+ The onChange event listener will ensure that the handleChange function fires whenever a keystroke is typed into the input field for name.
+  we're using the setFormState function to update the formState value for the name property. 
+  We assign the value taken from the input field in the UI with e.target.value 
+   and assign this value to the property formState.name. 
+We use the spread operator, ...formState, so we can retain the other key-value pairs in this object.
+Without the spread operator, the formState object would be overwritten to only contain the name: value key pair.
+The name property of target in the preceding expression actually refers to the name attribute of the form element.
+his attribute value matches the property names of formState (name, email, and message) and allows us to use [ ] to create dynamic property names.
+Now let's create the function that'll handle the submission of the form data.
+First, add the onSubmit attribute to the <form> element, and assign the function handleSubmit, as shown in the following expression:
+Let's establish the following rules for the form data to pass a quality test:
+
+Email must have a valid email format.
+
+Name and message fields must not be blank.
+
+We'll add validation in the handleChange function, allowing validation of the form data 
+before syncing the form data with the state, formState.
+This conditional statement says if the <input> is email, 
+then validate the value of that input field with the validateEmail function and assign its return to isValid. 
+Let's use the useState Hook to handle the error state.
+Note that the initial state of the errorMessage is an empty string. 
+let's assign the error message for the email input based on the isValid value.
+he nested conditional statement checks whether the values of these elements are blank.
+If the input values are blank, an error message is assigned to errorMessage; i
+f not, errorMessage is set to empty string, meaning that there's no error.
+
+At the bottom of the handleChange function, wrap the setter function, setFormState, 
+in a conditional so that the state only updates if the form data has passed the quality tests, as shown in the following statement:
+
+ If errorMessage has a truthy value, the <div> block will render. If errorMessage doesn't have an error message, the following <div> block doesn't render. 
+ We want the validation check to occur after the user has finished typing, not before
+ Thankfully we can use the onBlur attribute instead of onChange.
+ The onBlur attribute will fire the event once the user has changed focus from the input field, 
+ thus allowing the user to finish their entry before validating their input.
+
+However, in React we can create a single-page application that leverages the JavaScript environment in which we created the markup.
+A single-page application, or SPA, is a web application or website that interacts with the web browser by dynamically rewriting the current webpage, 
+in place of the default method of the browser loading entirely new pages.
+This approach allows for a more fluid UI because the page doesn't have to be reloaded each time. 
+React allows for conditional rendering and can replace a portion of the webpage based on the user's selection.
+
+In the preceding expression, we set the initial value of contactSelected to false.
+This is to prevent the contact form from showing when a user initially navigates to the homepage. 
+With contactSelected, we can establish a conditional statement to render the Gallery and About components 
+when this value is false and the ContactForm component when true. 
+
+These two equivalent statements declare that if the contactSelected is false, the Gallery and About components should be rendered, 
+but if contactedSelected is true, the ContactForm component should be rendered.
+
+The shorthand condition is called a ternary operator, identified with the ? and : symbols.
+The ternary operator is a popular pattern in React to enable conditional rendering, similar to how we used the && operator as a short circuit. 
+Notice the <> and </> that wrap the Gallery and About components
+They are called React fragments—a shorthand abbreviation for <React.Fragment></React.Fragment>.
+Although in JSX you can only return a single parent element, 
+this rule can be satisfied by wrapping the children components in a React fragment.
+
+This also allows you to wrap elements without creating extra DOM nodes, like wrapping with a <div> would do.
+As the preceding statement shows, when About is selected, contactSelected is set to false, and the About component is rendered.
+In the class attribute, we'll add a JavaScript conditional statement. If the value of contactSelected is true, which means that the user selected Contact,
+Note also that the navActive class value is assigned only if Contact hasn't been selected and the current category HAS been selected.
