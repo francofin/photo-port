@@ -1,0 +1,19 @@
+We'll establish the Photolist as the parent component and the Modal as the child component
+To obtain that data, we'll attach a click event to the images rendered in the PhotoList component. Let's walk through that important process now.
+In React, we'll use the onClick attribute and assign a click handler function to capture the individual photo data. 
+ Called a no-undef error in React, this states that the object was not defined, as shown in the following image:
+ The two critical data points needed for the modal to render are the image and the index, i.
+ It seems that the Modal is invoked and tries to render as soon as PhotoList has rendered. 
+ , the currentPhoto state isn't defined until the user clicks on an image. 
+ And we can't destructure an undefined value, so a TypeError is raised.
+ we want to conditionally render the modal based on whether an image has been clicked.
+ let's create another Hook that manages whether the modal is open or not.
+ The preceding statement will only render the Modal if the value isModalOpen is true, which is precisely what we want.
+ n the next step, we want to open the modal when a user has clicked on an image. 
+ We'll do that by modifying the click handler, toggleModal, so that it updates the isModalOpen value to true. 
+ Currently, we have a state called isModalOpen in the PhotoList component.
+ We'll need to pass down this state as a prop to the Modal component, so that it can be updated when the modal is closed.
+ In the parent component, we also have the function toggleModal, which we can use to toggle the state of the modal.
+ onClose identifier was assigned the function toggleModal.
+ In the Modal function, let's add onClose as a parameter of the Modal function, as shown in the following code:
+ 

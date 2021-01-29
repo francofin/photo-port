@@ -11,7 +11,7 @@ afterEach(cleanup)
 describe('Gallery is rendering', () => {
 
   it('renders', () => {
-    render(<Gallery currentCategory={portrait} />);
+    const {getByTestId} = render(<Gallery currentCategory={portrait} />);
   });
 })
 
