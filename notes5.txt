@@ -17,3 +17,16 @@ In React, we'll use the onClick attribute and assign a click handler function to
  onClose identifier was assigned the function toggleModal.
  In the Modal function, let's add onClose as a parameter of the Modal function, as shown in the following code:
  
+ Deploy
+ Time to deploy the website for Lyza! At the command-line prompt, 
+ navigate to the project's root directory and install gh-pages as a devDependency, using the following command:
+ Next, modify the package.json file to include the homepage property at the top. This is where the website will be deployed. 
+ Next, modify the package.json file to include the homepage property at the top. This is where the website will be deployed. 
+ Use your GitHub username in place of the <username> placeholder, as shown in the following statement:
+ "homepage": "http://<username>.github.io/photo-port",
+ Now add the following code to the scripts property:
+
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"
+
+
